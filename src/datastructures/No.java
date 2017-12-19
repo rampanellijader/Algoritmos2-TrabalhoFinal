@@ -3,15 +3,15 @@ package datastructures;
 public class No<T> {
 
    
-	private final T data;
+	private  T dado;
 	private No<T> anterior;
 	private No<T> proximo;
 	
 
-	  public No(T data, No<T> proximo, No<T> anterior ) {
-		this.data = data;
-		this.anterior = anterior;
-		this.proximo = proximo;
+	  public No(T dado, No<T> proximo, No<T> anterior ) {
+		this.dado = dado;
+		this.anterior = null;
+		this.proximo = null;
 	  }
 	
 	public No<T> getAnterior() {
@@ -26,8 +26,12 @@ public class No<T> {
 	public void setProximo(No<T> proximo) {
 		this.proximo = proximo;
 	}
-	public T getData() {
-		return data;
+	public T getDado() {
+		return dado;
+	}
+
+	public void setDado(T dado) {
+		this.dado = dado;
 	}
 	
 	

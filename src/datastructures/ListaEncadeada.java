@@ -1,102 +1,136 @@
 package datastructures;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Comparator;
-import java.util.Scanner;
-
-
+import model.Aluno;
 import predicates.NamePredicate;
 
 public class ListaEncadeada<T> {
 	
 	private No<T> head;
 	private No<T> tail;
-    private No<T> cursor;
+    private int tamanho;
     
 	public ListaEncadeada() {
 		this.head = null;
 		this.tail = null;
-		this.cursor = null;
+		this.tamanho = 0;
 	}  
 
 	
 	public void append(T dado) {
+		
 		No<T> novoNo = new No<T>(dado, this.tail, null);
 		if(this.head == null) {
 			this.head = novoNo;
-		} else {
+		}
+		else {
 		tail.setProximo(novoNo);
 		}
 		this.tail = novoNo;
+		
+		tamanho++;
 	}
 	
 	
 	public void addFirst(T dado) {
+		
 		No<T> novoNo = new No<T>(dado, null, this.head);
 		if(this.tail == null) {
 			this.tail = novoNo;
-		} else {
+		} 
+		else {
 		head.setAnterior(novoNo);
 		}
 		this.head = novoNo;
-}
-	
-	
-	
-	public T search(Comparator<T> cmp)
-	{
-		return null;
+
+		tamanho++;
 	}
 	
-	public void printObjects()
+	
+	
+	public T search(T key, Comparator<T> cmp) //comparador
+	{
+		
+	No<T> i = head;	
+	while (i != null) {
+		if (cmp.compare(key,i.getDado()) == 0){
+		return i.getDado();
+	}
+	
+			i = i.getProximo();
+	}
+		return null;
+		
+	}
+	
+	
+	public void printObjects() 
 	{
 		No<T> i = head;
 	while (i != null) {
-		System.out.println(i.getData());
+		System.out.println(i.getDado());
 		i = i.getProximo();
 		
 		
 }
-		
-		
+			
 	}
 	
 	public static  ListaEncadeada<model.Aluno> loadFromFile(FileReader arquivo)
 	{		
-		ListaEncadeada<model.Aluno> alunos = new ListaEncadeada<>();
-		Scanner sc;
+		BufferedReader sc = new BufferedReader(arquivo);
+		
+		ListaEncadeada<model.Aluno> alunos = new ListaEncadeada<Aluno>();
+		
 		try{
-			sc = new Scanner(new File("data/alunos.csv"));
-			sc.useDelimiter("[,\n]");
-		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo não localizado");
-			return null;
-		}
-		while (sc.hasNext()) {
+			String linha = sc.readLine();
+			
+			
+			while (linha != null) {
+				
+			String[] dados = linha.split(","); 	
 			
 			Aluno aluno = new Aluno();
-			aluno.setMatricula(sc.next());
-			aluno.setName(sc.next());
-			aluno.setEmail(sc.next());
-			aluno.setIdade(sc.nextInt());
-			aluno.setSexo(sc.next());
-			aluno.setEmpresa(sc.next());
-			aluno.setCidade(sc.next());
+			aluno.setMatricula(dados[0]);
+			aluno.setName(dados[1]);
+			aluno.setEmail(dados[2]);
+			aluno.setIdade(Integer.valueOf(dados[3]));
+			aluno.setSexo(dados[4]);
+			aluno.setEmpresa(dados[5]);
+			aluno.setCidade(dados[6]);
 			
-			alunos.append(aluno);
-		}
-
-		sc.close();
+			alunos.append((Aluno) aluno);
+		
+			linha = sc.readLine();
+			}
+			
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+}
 		
 		return alunos;
 }
+	
+	public void imprime() {
+		No<T> k = head;
+		while(k != null) {
+			System.out.println(((Aluno) k.getDado()).getName() +" " + ((Aluno) k.getDado()).getCidade());
+		
+			k = k.getProximo();
+		}
+		
+	}
+	
+	
 	public void removeIf(NamePredicate namePredicate) {
 		// TODO Auto-generated method stub
 		
 	}
-	
+	/*
 	public void insereAntes(No<T> novoNo) {
 		novoNo.setAnterior(head);
 		novoNo.setProximo(head.getProximo());
@@ -113,7 +147,7 @@ public class ListaEncadeada<T> {
 		
 		tail.getAnterior().setProximo(novoNo);
 		tail.setProximo(novoNo);
-	}
+	}*/
 	
 	
 }

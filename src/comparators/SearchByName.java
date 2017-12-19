@@ -12,8 +12,11 @@ public class SearchByName implements Comparator<Aluno> {
 
 	@Override
 	public int compare(Aluno o1, Aluno o2) {
-		// TODO Auto-generated method stub
-		return 0;
+		if( o1.getName().equals(o2.getName())) {
+			return 0;
+		}
+		
+		return 1;
 	}
 
 }

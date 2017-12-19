@@ -2,24 +2,55 @@ package model;
 
 public class Aluno {
 	
-	private String matricula;
-	private String name;
-	private String email;
-	private String idade;
-	private String sexo;
-	private String empresa;
-	private String cidade;
+	private String matricula =null;
+	private String name = null;
+	private String email = null;
+	private int idade = 0;
+	private String sexo = null;
+	private String empresa = null;
+	private String cidade = null;
 
 	
-	public Aluno(String name, String email, String sexo, String idade, String cidade, String matricula, String empresa) {
-		this.matricula = matricula;
+	public Aluno(String name, String email, int idade, String cidade) {
+		//this.matricula = matricula;
 		this.name = name;
 		this.email = email;
-		this.sexo = sexo;
+		//this.sexo = sexo;
 		this.idade = idade;
-		this.empresa = empresa;
+		//this.empresa = empresa;
 		this.cidade = cidade;
 		
+	}
+	
+	
+     
+	public Aluno() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 	public String getMatricula() {
 		return matricula;
@@ -32,7 +63,7 @@ public class Aluno {
 		public String getEmail() {
 		return email;
 	}
-		public String getIdade() {
+		public int getIdade() {
 			return idade;
 	}
 		
