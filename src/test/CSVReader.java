@@ -19,7 +19,7 @@ public class CSVReader<T> {
 		}
 		
 		while (sc.hasNext()) {
-			Aluno a = new Aluno(sc.next(),sc.next(), sc.next(),sc.next(),sc.next(),sc.next(), sc.next());
+			Aluno a = new Aluno(sc.next(), sc.next(), sc.next(), sc.next(), sc.next(), sc.next(), sc.next());
 			System.out.println(a);
 		}
 		
