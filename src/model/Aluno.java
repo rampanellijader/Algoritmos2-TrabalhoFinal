@@ -24,10 +24,15 @@ public class Aluno {
 	
 	
      
-	public Aluno() {
+	public Aluno(String matricula2, String name2, String email2, String sexo2, int idade2, String empresa2, String cidade2) {
 		// TODO Auto-generated constructor stub
 	}
 
+
+
+	public Aluno(String next, String next2, String next3, String next4, String next5, String next6, String next7) {
+		// TODO Auto-generated constructor stub
+	}
 
 
 

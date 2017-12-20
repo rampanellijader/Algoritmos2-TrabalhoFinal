@@ -28,7 +28,8 @@ public class ProgramaC_Alunos {
 		}
 		
 		ListaEncadeada<Aluno> lista = ListaEncadeada.loadFromFile(arquivo);
-		 Aluno pesq = new Aluno(name, email, idade, cidade);
+		
+		Aluno pesq = new Aluno(name, email, idade, cidade);
 		 
 		System.out.println(lista.search(pesq, new SearchByName(name)));
 		System.out.println(lista.search(pesq, new SearchByEmail(email)));

@@ -15,7 +15,7 @@ public class ListaEncadeada<T> {
 	
 	private No<T> head;
 	private No<T> tail;
-    private int tamanho;
+    private static int tamanho;
     
 	public ListaEncadeada() {
 		this.head = null;
@@ -93,7 +93,7 @@ public class ListaEncadeada<T> {
 			return null;
 		}
 		while (sc.hasNext()) {
-			Aluno aluno = new Aluno();
+			Aluno aluno = new Aluno(null, null, null, null, tamanho, null, null);
 			aluno.setMatricula(sc.next());
 			aluno.setName(sc.next());
 			aluno.setEmail(sc.next());
