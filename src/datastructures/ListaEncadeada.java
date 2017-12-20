@@ -1,9 +1,13 @@
 package datastructures;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Comparator;
+import java.util.Scanner;
+
 import model.Aluno;
 import predicates.NamePredicate;
 
@@ -72,48 +76,40 @@ public class ListaEncadeada<T> {
 		No<T> i = head;
 	while (i != null) {
 		System.out.println(i.getDado());
-		i = i.getProximo();
-		
-		
+		i = i.getProximo();	
 }
 			
 	}
 	
 	public static  ListaEncadeada<model.Aluno> loadFromFile(FileReader arquivo)
 	{		
-		BufferedReader sc = new BufferedReader(arquivo);
-		
-		ListaEncadeada<model.Aluno> alunos = new ListaEncadeada<Aluno>();
-		
+		ListaEncadeada<Aluno> alunos = new ListaEncadeada<>();
+		Scanner sc;
 		try{
-			String linha = sc.readLine();
-			
-			
-			while (linha != null) {
-				
-			String[] dados = linha.split(","); 	
-			
+			sc = new Scanner(new File("data/alunos.csv"));
+			sc.useDelimiter("[,\n]");
+		} catch (FileNotFoundException e) {
+			System.out.println("Arquivo não localizado");
+			return null;
+		}
+		while (sc.hasNext()) {
 			Aluno aluno = new Aluno();
-			aluno.setMatricula(dados[0]);
-			aluno.setName(dados[1]);
-			aluno.setEmail(dados[2]);
-			aluno.setIdade(Integer.valueOf(dados[3]));
-			aluno.setSexo(dados[4]);
-			aluno.setEmpresa(dados[5]);
-			aluno.setCidade(dados[6]);
+			aluno.setMatricula(sc.next());
+			aluno.setName(sc.next());
+			aluno.setEmail(sc.next());
+			aluno.setIdade(sc.nextInt());
+			aluno.setSexo(sc.next());
+			aluno.setEmpresa(sc.next());
+			aluno.setCidade(sc.next());
 			
-			alunos.append((Aluno) aluno);
-		
-			linha = sc.readLine();
-			}
-			
-		
-		} catch (IOException e) {
-			e.printStackTrace();
-}
+			alunos.append(aluno);
+		}
+
+		sc.close();
 		
 		return alunos;
-}
+	}
+
 	
 	public void imprime() {
 		No<T> k = head;

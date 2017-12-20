@@ -16,7 +16,7 @@ public class SearchByName implements Comparator<Aluno> {
 			return 0;
 		}
 		
-		return 1;
+		return -1;
 	}
 
 }
